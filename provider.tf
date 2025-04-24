@@ -1,18 +1,18 @@
 provider "aws" {
-  region = "ap-southeast-1"
+  region = local.region
 }
 
 # Data resource to fetch EKS cluster details
 data "aws_eks_cluster" "cluster" {
   name = module.eks.cluster_name
 
-  depends_on = [module.eks] # Ensure the cluster is created before fetching details
+  depends_on = [module.eks]
 }
 
 data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_name
 
-  depends_on = [data.aws_eks_cluster.cluster] # Ensure auth token is fetched after cluster info
+  depends_on = [data.aws_eks_cluster.cluster]
 }
 
 # Kubernetes provider setup

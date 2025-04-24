@@ -35,27 +35,27 @@ resource "kubernetes_deployment" "mongo_express" {
 
           env {
             name  = "ME_CONFIG_MONGODB_SERVER"
-            value = "172.31.19.52"
+            value = local.mongodb_config_server
           }
 
           env {
             name  = "ME_CONFIG_MONGODB_PORT"
-            value = "27017"
+            value = local.mongodb_config_port
           }
 
           env {
             name  = "ME_CONFIG_MONGODB_ADMINUSERNAME"
-            value = "admin"
+            value = local.mongodb_config_admin_username
           }
 
           env {
             name  = "ME_CONFIG_MONGODB_ADMINPASSWORD"
-            value = "6181Mongodb!"
+            value = local.mongodb_config_admin_password
           }
 
           env {
             name  = "ME_CONFIG_MONGODB_AUTH_DATABASE"
-            value = "admin"
+            value = local.mongodb_config_auth_db
           }
         }
       }
@@ -76,7 +76,7 @@ resource "kubernetes_service" "mongo_express" {
     }
 
     port {
-      port        = 8081
+      port        = 80
       target_port = 8081
     }
 

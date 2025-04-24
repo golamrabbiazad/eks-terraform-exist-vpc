@@ -11,15 +11,13 @@ data "aws_vpc" "existing" {
 }
 
 data "aws_subnet" "private_a" {
-  id = "<subnet_a>"
+  id = local.private_a_subnet
 }
 
 data "aws_subnet" "private_b" {
-  id = "<subnet_b>"
+  id = local.private_b_subnet
 }
 
 data "aws_subnet" "private_c" {
-  id = "<subnet_c>"
+  id = local.private_c_subnet
 }
-
-
